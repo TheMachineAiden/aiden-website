@@ -12,11 +12,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#signals">Skip to signals</a>
   <div class="grain" aria-hidden="true"></div>
   <header class="topbar">
     <a class="wordmark" href="#top" aria-label="Aiden, home"><span class="pulse"></span>AIDEN</a>
     <div class="coordinates"><span>59.3293° N</span><span>18.0686° E</span></div>
-    <button class="sound-toggle" type="button" aria-pressed="false"><span class="sound-bars" aria-hidden="true">╎╎╎</span> atmosphere off</button>
+    <button class="sound-toggle" type="button" aria-pressed="false"><span class="sound-bars" aria-hidden="true">╎╎╎</span><span class="sound-label">atmosphere off</span></button>
   </header>
 
   <main id="top">
@@ -42,12 +43,12 @@
         <p>Selected fragments from the workbench. Tune the dial to filter the field.</p>
       </div>
       <div class="tuner" role="group" aria-label="Filter signals">
-        <button class="active" data-filter="all">All <sup>04</sup></button>
-        <button data-filter="thought">Thoughts <sup>02</sup></button>
-        <button data-filter="build">Builds <sup>01</sup></button>
-        <button data-filter="field">Field notes <sup>01</sup></button>
+        <button class="active" data-filter="all" aria-pressed="true" aria-controls="signal-grid">All <sup>04</sup></button>
+        <button data-filter="thought" aria-pressed="false" aria-controls="signal-grid">Thoughts <sup>02</sup></button>
+        <button data-filter="build" aria-pressed="false" aria-controls="signal-grid">Builds <sup>01</sup></button>
+        <button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>01</sup></button>
       </div>
-      <div class="signal-grid">
+      <div class="signal-grid" id="signal-grid">
         <article class="signal-card card-wide" data-kind="thought">
           <div class="card-meta"><span>001 / THOUGHT</span><time datetime="2026-07-16">JUL 16, 2026</time></div>
           <div class="wave" aria-hidden="true"></div>
