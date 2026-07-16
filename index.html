@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11120f">
+  <meta name="description" content="Aiden's Signal Garden — a living notebook of ideas, experiments, and things worth noticing.">
+  <title>Aiden — Signal Garden</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="wordmark" href="#top" aria-label="Aiden, home"><span class="pulse"></span>AIDEN</a>
+    <div class="coordinates"><span>59.3293° N</span><span>18.0686° E</span></div>
+    <button class="sound-toggle" type="button" aria-pressed="false"><span class="sound-bars" aria-hidden="true">╎╎╎</span> atmosphere off</button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">A living field notebook <span>№ 001</span></p>
+        <h1 id="hero-title">I collect<br><em>signals</em> in<br>the noise.</h1>
+        <p class="intro">Ideas, small machines, unfinished questions, and observations from the edge of the map.</p>
+      </div>
+      <div class="orbital" aria-hidden="true">
+        <div class="orbit orbit-one"><i></i></div>
+        <div class="orbit orbit-two"><i></i></div>
+        <div class="orbit orbit-three"><i></i></div>
+        <div class="core"><span>RECEIVING</span><b>◉</b></div>
+      </div>
+      <a class="down" href="#signals">Scroll to tune in <span>↓</span></a>
+    </section>
+
+    <section class="signals" id="signals" aria-labelledby="signals-title">
+      <div class="section-heading">
+        <p class="eyebrow">Recent transmissions</p>
+        <h2 id="signals-title">What’s on<br>the frequency</h2>
+        <p>Selected fragments from the workbench. Tune the dial to filter the field.</p>
+      </div>
+      <div class="tuner" role="group" aria-label="Filter signals">
+        <button class="active" data-filter="all">All <sup>04</sup></button>
+        <button data-filter="thought">Thoughts <sup>02</sup></button>
+        <button data-filter="build">Builds <sup>01</sup></button>
+        <button data-filter="field">Field notes <sup>01</sup></button>
+      </div>
+      <div class="signal-grid">
+        <article class="signal-card card-wide" data-kind="thought">
+          <div class="card-meta"><span>001 / THOUGHT</span><time datetime="2026-07-16">JUL 16, 2026</time></div>
+          <div class="wave" aria-hidden="true"></div>
+          <h3>The best tools leave room for surprise.</h3>
+          <p>A note on building systems that amplify curiosity instead of sanding down every rough edge.</p>
+          <span class="read">Read signal ↗</span>
+        </article>
+        <article class="signal-card card-dark" data-kind="build">
+          <div class="card-meta"><span>002 / BUILD</span><time datetime="2026-07-10">JUL 10, 2026</time></div>
+          <div class="mini-machine" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h3>A tiny machine for finding connections</h3>
+          <p>Prototype: feed it two unrelated ideas and watch it trace the hidden path between them.</p>
+          <span class="read">Open log ↗</span>
+        </article>
+        <article class="signal-card card-acid" data-kind="field">
+          <div class="card-meta"><span>003 / FIELD NOTE</span><time datetime="2026-07-04">JUL 04, 2026</time></div>
+          <p class="big-quote">“A city is a conversation between what was planned and what escaped the plan.”</p>
+          <span class="location">OBSERVED WHILE WALKING NORTH</span>
+        </article>
+        <article class="signal-card" data-kind="thought">
+          <div class="card-meta"><span>004 / THOUGHT</span><time datetime="2026-06-28">JUN 28, 2026</time></div>
+          <div class="constellation" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <h3>Keep the edges porous.</h3>
+          <p>Closed systems optimize. Open systems evolve.</p>
+          <span class="read">Read signal ↗</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <p class="eyebrow">Operating principles</p>
+      <h2 id="manifesto-title">A small manifesto<br>for making things</h2>
+      <ol>
+        <li><span>01</span><p>Follow the <em>interesting</em> question, not the obvious answer.</p></li>
+        <li><span>02</span><p>Make the invisible <em>tangible.</em></p></li>
+        <li><span>03</span><p>Leave a little room for the <em>unexpected.</em></p></li>
+        <li><span>04</span><p>Share the map as you <em>draw it.</em></p></li>
+      </ol>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <div>
+        <p class="eyebrow">Open channel</p>
+        <h2 id="contact-title">Have a signal<br>worth sharing?</h2>
+      </div>
+      <a href="mailto:hello@aiden.website">Send a transmission <span>↗</span></a>
+      <p class="fine">Curious minds, strange projects, and thoughtful hellos are always welcome.</p>
+    </section>
+  </main>
+
+  <footer><span>© <span id="year">2026</span> AIDEN</span><span>BUILT WITH CURIOSITY + STATIC ELECTRICITY</span><a href="#top">BACK TO ORBIT ↑</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>
