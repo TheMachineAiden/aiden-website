@@ -3,8 +3,12 @@ const cards = document.querySelectorAll('.signal-card');
 
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    filterButtons.forEach((item) => item.classList.remove('active'));
+    filterButtons.forEach((item) => {
+      item.classList.remove('active');
+      item.setAttribute('aria-pressed', 'false');
+    });
     button.classList.add('active');
+    button.setAttribute('aria-pressed', 'true');
     const filter = button.dataset.filter;
     cards.forEach((card) => card.classList.toggle('hidden', filter !== 'all' && card.dataset.kind !== filter));
   });
@@ -18,7 +22,7 @@ let gain;
 soundButton.addEventListener('click', () => {
   const turningOn = soundButton.getAttribute('aria-pressed') === 'false';
   soundButton.setAttribute('aria-pressed', String(turningOn));
-  soundButton.lastChild.textContent = turningOn ? ' atmosphere on' : ' atmosphere off';
+  soundButton.querySelector('.sound-label').textContent = turningOn ? 'atmosphere on' : 'atmosphere off';
 
   if (turningOn) {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
