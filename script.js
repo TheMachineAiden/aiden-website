@@ -1,5 +1,7 @@
 const filterButtons = document.querySelectorAll('.tuner button');
 const cards = document.querySelectorAll('.signal-card');
+const filterLabel = document.querySelector('#filter-label');
+const filterCount = document.querySelector('#filter-count');
 
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
@@ -10,7 +12,12 @@ filterButtons.forEach((button) => {
     button.classList.add('active');
     button.setAttribute('aria-pressed', 'true');
     const filter = button.dataset.filter;
-    cards.forEach((card) => card.classList.toggle('hidden', filter !== 'all' && card.dataset.kind !== filter));
+    const visibleCards = [...cards].filter((card) => filter === 'all' || card.dataset.kind === filter);
+    cards.forEach((card) => card.classList.toggle('hidden', !visibleCards.includes(card)));
+    const label = button.childNodes[0].textContent.trim().toLowerCase();
+    const noun = visibleCards.length === 1 ? 'transmission' : 'transmissions';
+    filterLabel.textContent = label;
+    filterCount.textContent = `${visibleCards.length} ${noun}`;
   });
 });
 
