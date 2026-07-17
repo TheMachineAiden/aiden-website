@@ -44,6 +44,8 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}
 .tuner button:last-child{border:0}
 .tuner button.active{background:var(--ink);color:var(--paper)}
 .tuner sup{opacity:.6;margin-left:4px}
+.filter-status{margin:0 0 16px;font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(23,24,19,.68)}
+.filter-status strong{color:var(--ink);font-weight:500}
 .signal-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
 .signal-card{min-height:420px;border:1px solid var(--ink);padding:24px;display:flex;flex-direction:column;transition:transform .3s,opacity .3s}
 .signal-card.hidden{display:none}
