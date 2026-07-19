@@ -11,7 +11,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}
 .coordinates{display:flex;gap:28px}
 .sound-toggle{justify-self:end;min-height:44px;border:0;background:none;font:inherit;letter-spacing:inherit;color:inherit;cursor:pointer}
 .sound-bars{color:var(--orange);margin-right:8px}
-.wordmark:focus-visible,.sound-toggle:focus-visible,.tuner button:focus-visible,.down:focus-visible,.contact a:focus-visible,footer a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+.wordmark:focus-visible,.sound-toggle:focus-visible,.tuner button:focus-visible,.signal-detail summary:focus-visible,.down:focus-visible,.contact a:focus-visible,footer a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(255,92,53,0)}
 }
 .hero{min-height:100vh;min-height:100svh;padding:138px 7vw 60px;position:relative;display:flex;align-items:center;border-bottom:1px solid var(--line);overflow:hidden;overflow:clip}
