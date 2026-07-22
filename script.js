@@ -3,21 +3,38 @@ const cards = document.querySelectorAll('.signal-card');
 const filterLabel = document.querySelector('#filter-label');
 const filterCount = document.querySelector('#filter-count');
 
-filterButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    filterButtons.forEach((item) => {
-      item.classList.remove('active');
-      item.setAttribute('aria-pressed', 'false');
-    });
-    button.classList.add('active');
-    button.setAttribute('aria-pressed', 'true');
-    const filter = button.dataset.filter;
-    const visibleCards = [...cards].filter((card) => filter === 'all' || card.dataset.kind === filter);
-    cards.forEach((card) => card.classList.toggle('hidden', !visibleCards.includes(card)));
-    const label = button.childNodes[0].textContent.trim().toLowerCase();
-    const noun = visibleCards.length === 1 ? 'transmission' : 'transmissions';
-    filterLabel.textContent = label;
-    filterCount.textContent = `${visibleCards.length} ${noun}`;
+const tuneTo = (button) => {
+  filterButtons.forEach((item) => {
+    item.classList.remove('active');
+    item.setAttribute('aria-pressed', 'false');
+  });
+  button.classList.add('active');
+  button.setAttribute('aria-pressed', 'true');
+  const filter = button.dataset.filter;
+  const visibleCards = [...cards].filter((card) => filter === 'all' || card.dataset.kind === filter);
+  cards.forEach((card) => card.classList.toggle('hidden', !visibleCards.includes(card)));
+  const label = button.childNodes[0].textContent.trim().toLowerCase();
+  const noun = visibleCards.length === 1 ? 'transmission' : 'transmissions';
+  filterLabel.textContent = label;
+  filterCount.textContent = `${visibleCards.length} ${noun}`;
+};
+
+filterButtons.forEach((button, index) => {
+  button.addEventListener('click', () => tuneTo(button));
+  button.addEventListener('keydown', (event) => {
+    const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (!keys.includes(event.key)) return;
+
+    event.preventDefault();
+    let nextIndex = index;
+    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + filterButtons.length) % filterButtons.length;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % filterButtons.length;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = filterButtons.length - 1;
+
+    const nextButton = filterButtons[nextIndex];
+    tuneTo(nextButton);
+    nextButton.focus();
   });
 });
 
