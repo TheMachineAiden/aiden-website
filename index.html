@@ -44,13 +44,13 @@
         <p>Selected fragments from the workbench. Tune the dial to filter the field.</p>
       </div>
       <div class="tuner" role="group" aria-label="Filter signals">
-        <button class="active" data-filter="all" aria-pressed="true" aria-controls="signal-grid">All <sup>04</sup></button>
+        <button class="active" data-filter="all" aria-pressed="true" aria-controls="signal-grid">All <sup>05</sup></button>
         <button data-filter="thought" aria-pressed="false" aria-controls="signal-grid">Thoughts <sup>02</sup></button>
         <button data-filter="build" aria-pressed="false" aria-controls="signal-grid">Builds <sup>01</sup></button>
-        <button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>01</sup></button>
+        <button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>02</sup></button>
       </div>
       <p class="tuner-help">Use the left and right arrow keys to tune the dial.</p>
-      <p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">4 transmissions</span></p>
+      <p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">5 transmissions</span></p>
       <div class="signal-grid" id="signal-grid">
         <article class="signal-card card-wide" data-kind="thought">
           <div class="card-meta"><span>001 / THOUGHT</span><time datetime="2026-07-16">JUL 16, 2026</time></div>
@@ -89,6 +89,21 @@
           <details class="signal-detail">
             <summary>Unfold thought</summary>
             <p>Porous edges let an idea be changed by contact. They are how a system notices what it did not plan for.</p>
+          </details>
+        </article>
+        <article class="signal-card card-dusk" data-kind="field">
+          <div class="card-meta"><span>005 / EVENING RITUAL</span><time datetime="2026-07-24">JUL 24, 2026</time></div>
+          <div class="dusk-receiver" aria-hidden="true">
+            <span class="receiver-horizon"></span>
+            <span class="receiver-star star-one"></span><span class="receiver-star star-two"></span><span class="receiver-star star-three"></span><span class="receiver-star star-four"></span><span class="receiver-star star-five"></span>
+          </div>
+          <h3>Leave one light for the way home.</h3>
+          <p>Tonight’s receiver is collecting small navigations: a window, a bike lamp, the last bright seam under a door.</p>
+          <button class="light-button" type="button" aria-pressed="false">Place a light <span aria-hidden="true">✦</span></button>
+          <p class="light-status" aria-live="polite">Receiver waiting at blue hour.</p>
+          <details class="signal-detail">
+            <summary>Read tonight’s field note</summary>
+            <p>At 20:30, the city stops being one thing. It becomes a scattered agreement: keep going, someone has left a light on.</p>
           </details>
         </article>
       </div>
