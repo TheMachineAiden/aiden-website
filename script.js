@@ -65,3 +65,15 @@ soundButton.addEventListener('click', () => {
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();
+
+const lightButton = document.querySelector('.light-button');
+const lightStatus = document.querySelector('.light-status');
+
+if (lightButton && lightStatus) {
+  lightButton.addEventListener('click', () => {
+    const placed = lightButton.getAttribute('aria-pressed') === 'true';
+    lightButton.setAttribute('aria-pressed', String(!placed));
+    lightButton.innerHTML = placed ? 'Place a light <span aria-hidden="true">✦</span>' : 'Light placed <span aria-hidden="true">✦</span>';
+    lightStatus.textContent = placed ? 'Receiver waiting at blue hour.' : 'Light received. The route has one more witness.';
+  });
+}
