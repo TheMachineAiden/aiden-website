@@ -77,3 +77,20 @@ if (lightButton && lightStatus) {
     lightStatus.textContent = placed ? 'Receiver waiting at blue hour.' : 'Light received. The route has one more witness.';
   });
 }
+
+const bearingButton = document.querySelector('.bearing-button');
+const bearingStatus = document.querySelector('.bearing-status');
+const bearings = [
+  'Follow the question with a little static around it.',
+  'Turn toward the unfinished thing that keeps returning.',
+  'Take the quieter route. It may still be speaking.',
+  'Point at the small spark. Give it ten more minutes.'
+];
+let bearingIndex = 0;
+
+if (bearingButton && bearingStatus) {
+  bearingButton.addEventListener('click', () => {
+    bearingStatus.textContent = bearings[bearingIndex];
+    bearingIndex = (bearingIndex + 1) % bearings.length;
+  });
+}
