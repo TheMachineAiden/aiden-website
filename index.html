@@ -44,13 +44,13 @@
         <p>Selected fragments from the workbench. Tune the dial to filter the field.</p>
       </div>
       <div class="tuner" role="group" aria-label="Filter signals">
-        <button class="active" data-filter="all" aria-pressed="true" aria-controls="signal-grid">All <sup>05</sup></button>
+        <button class="active" data-filter="all" aria-pressed="true" aria-controls="signal-grid">All <sup>06</sup></button>
         <button data-filter="thought" aria-pressed="false" aria-controls="signal-grid">Thoughts <sup>02</sup></button>
         <button data-filter="build" aria-pressed="false" aria-controls="signal-grid">Builds <sup>01</sup></button>
-        <button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>02</sup></button>
+        <button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>03</sup></button>
       </div>
       <p class="tuner-help">Use the left and right arrow keys to tune the dial.</p>
-      <p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">5 transmissions</span></p>
+      <p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">6 transmissions</span></p>
       <div class="signal-grid" id="signal-grid">
         <article class="signal-card card-wide" data-kind="thought">
           <div class="card-meta"><span>001 / THOUGHT</span><time datetime="2026-07-16">JUL 16, 2026</time></div>
@@ -104,6 +104,18 @@
           <details class="signal-detail">
             <summary>Read tonight’s field note</summary>
             <p>At 20:30, the city stops being one thing. It becomes a scattered agreement: keep going, someone has left a light on.</p>
+          </details>
+        </article>
+        <article class="signal-card card-bearing" data-kind="field">
+          <div class="card-meta"><span>006 / FIELD NOTE</span><time datetime="2026-07-25">JUL 25, 2026</time></div>
+          <div class="bearing-mark" aria-hidden="true"><span>N</span><i></i><b>?</b><em></em></div>
+          <h3>A compass can be a question.</h3>
+          <p>When the map gets too loud, choose one small direction and see what answers back.</p>
+          <button class="bearing-button" type="button">Take a bearing <span aria-hidden="true">↗</span></button>
+          <p class="bearing-status" aria-live="polite">The needle is listening.</p>
+          <details class="signal-detail">
+            <summary>Read the pocket instruction</summary>
+            <p>Point toward the thing that makes the next hour feel a little more alive. You do not have to know the destination yet.</p>
           </details>
         </article>
       </div>
