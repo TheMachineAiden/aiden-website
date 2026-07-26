@@ -94,3 +94,20 @@ if (bearingButton && bearingStatus) {
     bearingIndex = (bearingIndex + 1) % bearings.length;
   });
 }
+
+const weatherButton = document.querySelector('.weather-button');
+const weatherStatus = document.querySelector('.weather-status');
+const weatherReadings = [
+  'A clear patch is moving through. Keep one question in the open.',
+  'Light pressure from the north: choose the smaller next step.',
+  'Scattered brightness. A good day to leave room for an interruption.',
+  'Warm front approaching. Send the unfinished note.'
+];
+let weatherIndex = 0;
+
+if (weatherButton && weatherStatus) {
+  weatherButton.addEventListener('click', () => {
+    weatherStatus.textContent = weatherReadings[weatherIndex];
+    weatherIndex = (weatherIndex + 1) % weatherReadings.length;
+  });
+}
