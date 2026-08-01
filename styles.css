@@ -96,7 +96,7 @@ footer a{min-height:44px;display:flex;align-items:center;color:inherit;text-deco
 .hero{padding-left:6vw;align-items:flex-start}
 .hero h1{font-size:18vw}
 .intro{margin-left:0;max-width:80%;margin-top:50px}
-.orbital{width:90vw;right:-40vw;top:55%}
+.orbital{width:72vw;right:-28vw;top:79%;opacity:.7}
 .section-heading{grid-template-columns:1fr}
 .section-heading h2{margin:25px 0}
 .tuner{overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
@@ -107,6 +107,10 @@ footer a{min-height:44px;display:flex;align-items:center;color:inherit;text-deco
 .contact a,.contact .fine{grid-column:1;margin-top:45px}
 footer{gap:20px;flex-wrap:wrap}
 footer span:nth-child(2){display:none}
+}
+@media(max-height:500px) and (orientation:landscape){.hero{padding-top:105px;min-height:620px}
+.hero h1{font-size:clamp(62px,9vw,110px)}
+.orbital{width:32vw;right:-3vw;top:22%;opacity:.55}
 }
 @media(hover:hover){.signal-card:hover{transform:translateY(-5px)}
 .tuner button:hover{background:var(--ink);color:var(--paper)}
