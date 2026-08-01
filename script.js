@@ -2,6 +2,8 @@ const filterButtons = document.querySelectorAll('.tuner button');
 const cards = document.querySelectorAll('.signal-card');
 const filterLabel = document.querySelector('#filter-label');
 const filterCount = document.querySelector('#filter-count');
+const signalFinder = document.querySelector('.signal-finder');
+const finderResult = document.querySelector('#finder-result');
 
 const tuneTo = (button) => {
   filterButtons.forEach((item) => {
@@ -12,11 +14,15 @@ const tuneTo = (button) => {
   button.setAttribute('aria-pressed', 'true');
   const filter = button.dataset.filter;
   const visibleCards = [...cards].filter((card) => filter === 'all' || card.dataset.kind === filter);
-  cards.forEach((card) => card.classList.toggle('hidden', !visibleCards.includes(card)));
+  cards.forEach((card) => {
+    card.classList.toggle('hidden', !visibleCards.includes(card));
+    card.classList.remove('is-found');
+  });
   const label = button.childNodes[0].textContent.trim().toLowerCase();
   const noun = visibleCards.length === 1 ? 'transmission' : 'transmissions';
   filterLabel.textContent = label;
   filterCount.textContent = `${visibleCards.length} ${noun}`;
+  finderResult.textContent = '';
 };
 
 filterButtons.forEach((button, index) => {
@@ -37,6 +43,19 @@ filterButtons.forEach((button, index) => {
     nextButton.focus();
   });
 });
+
+if (signalFinder && finderResult) {
+  signalFinder.addEventListener('click', () => {
+    const visibleCards = [...cards].filter((card) => !card.classList.contains('hidden'));
+    const chosenCard = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+    const title = chosenCard.querySelector('h3').textContent;
+
+    cards.forEach((card) => card.classList.remove('is-found'));
+    chosenCard.classList.add('is-found');
+    chosenCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    finderResult.textContent = ` · signal found: ${title}`;
+  });
+}
 
 const soundButton = document.querySelector('.sound-toggle');
 let audioContext;

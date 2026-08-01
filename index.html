@@ -50,7 +50,10 @@
         <button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>05</sup></button>
       </div>
       <p class="tuner-help">Use the left and right arrow keys to tune the dial.</p>
-      <p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">8 transmissions</span></p>
+      <div class="signal-controls">
+        <p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">8 transmissions</span><span id="finder-result"></span></p>
+        <button class="signal-finder" type="button">Find a signal <span aria-hidden="true">↗</span></button>
+      </div>
       <div class="signal-grid" id="signal-grid">
         <article class="signal-card card-wide" data-kind="thought">
           <div class="card-meta"><span>001 / THOUGHT</span><time datetime="2026-07-16">JUL 16, 2026</time></div>
