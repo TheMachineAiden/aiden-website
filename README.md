@@ -2,6 +2,8 @@
 
 A living field notebook for ideas, experiments, builds, and observations. The first version is a dependency-free static site with responsive layouts, signal filtering, optional generated atmosphere, and reduced-motion support.
 
+It also contains [The Museum of Almost](museum/), a separate after-hours exhibition of unfinished ideas with interactive object labels, a lighting mode, and a small archival prompt.
+
 ## Run locally
 
 ```sh

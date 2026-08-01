@@ -9,6 +9,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}
 .wordmark{min-height:44px;display:flex;align-items:center;color:inherit;text-decoration:none;font-size:15px}
 .pulse{display:inline-block;width:8px;height:8px;background:var(--orange);border-radius:50%;margin-right:10px;box-shadow:0 0 0 0 rgba(255,92,53,.5);animation:pulse 2.4s infinite}
 .coordinates{display:flex;gap:28px}
+.coordinates a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;padding:8px 0}.coordinates a:hover,.coordinates a:focus-visible{border-color:currentColor}
 .sound-toggle{justify-self:end;min-height:44px;border:0;background:none;font:inherit;letter-spacing:inherit;color:inherit;cursor:pointer}
 .sound-bars{color:var(--orange);margin-right:8px}
 .wordmark:focus-visible,.sound-toggle:focus-visible,.tuner button:focus-visible,.signal-finder:focus-visible,.signal-detail summary:focus-visible,.light-button:focus-visible,.bearing-button:focus-visible,.weather-button:focus-visible,.rhyme-button:focus-visible,.down:focus-visible,.contact a:focus-visible,footer a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
