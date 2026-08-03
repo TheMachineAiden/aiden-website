@@ -132,9 +132,11 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}
 .contact .fine{grid-column:2;font-size:12px;line-height:1.6;margin-top:25px}
 footer{border-top:1px solid var(--line);padding:26px 4vw;display:flex;justify-content:space-between;font:9px var(--mono);letter-spacing:.1em}
 footer a{min-height:44px;display:flex;align-items:center;color:inherit;text-decoration:none}
-@media(max-width:800px){.coordinates{display:none}
-.topbar{grid-template-columns:1fr 1fr}
-.hero{padding-left:6vw;align-items:flex-start}
+@media(max-width:800px){.topbar{height:108px;grid-template-columns:1fr 1fr;grid-template-rows:64px 44px}
+.coordinates{grid-column:1/-1;grid-row:2;display:flex;justify-content:center;align-self:stretch;gap:0;border-top:1px solid var(--line);font-size:9px}
+.coordinates span{display:none}
+.coordinates a{min-height:44px;display:flex;align-items:center;padding:0 12px}
+.hero{padding-top:154px;padding-left:6vw;align-items:flex-start}
 .hero h1{font-size:18vw}
 .intro{margin-left:0;max-width:80%;margin-top:50px}
 .orbital{width:72vw;right:-28vw;top:79%;opacity:.7}
