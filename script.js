@@ -4,6 +4,7 @@ const filterLabel = document.querySelector('#filter-label');
 const filterCount = document.querySelector('#filter-count');
 const signalFinder = document.querySelector('.signal-finder');
 const finderResult = document.querySelector('#finder-result');
+let finderIndex = 0;
 
 const tuneTo = (button) => {
   filterButtons.forEach((item) => {
@@ -23,6 +24,7 @@ const tuneTo = (button) => {
   filterLabel.textContent = label;
   filterCount.textContent = `${visibleCards.length} ${noun}`;
   finderResult.textContent = '';
+  finderIndex = 0;
 };
 
 filterButtons.forEach((button, index) => {
@@ -47,13 +49,14 @@ filterButtons.forEach((button, index) => {
 if (signalFinder && finderResult) {
   signalFinder.addEventListener('click', () => {
     const visibleCards = [...cards].filter((card) => !card.classList.contains('hidden'));
-    const chosenCard = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+    const chosenCard = visibleCards[finderIndex % visibleCards.length];
     const title = chosenCard.querySelector('h3').textContent;
 
     cards.forEach((card) => card.classList.remove('is-found'));
     chosenCard.classList.add('is-found');
     chosenCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    finderResult.textContent = ` · signal found: ${title}`;
+    finderIndex += 1;
+    finderResult.textContent = ` · signal ${((finderIndex - 1) % visibleCards.length) + 1} of ${visibleCards.length}: ${title}`;
   });
 }
 
