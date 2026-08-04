@@ -5,6 +5,9 @@ const filterCount = document.querySelector('#filter-count');
 const signalFinder = document.querySelector('.signal-finder');
 const finderResult = document.querySelector('#finder-result');
 let finderIndex = 0;
+const setFinderLabel = (label, symbol) => {
+  signalFinder.innerHTML = `${label} <span aria-hidden="true">${symbol}</span>`;
+};
 
 const tuneTo = (button) => {
   filterButtons.forEach((item) => {
@@ -25,6 +28,7 @@ const tuneTo = (button) => {
   filterCount.textContent = `${visibleCards.length} ${noun}`;
   finderResult.textContent = '';
   finderIndex = 0;
+  setFinderLabel('Find a signal', '↗');
 };
 
 filterButtons.forEach((button, index) => {
@@ -54,9 +58,12 @@ if (signalFinder && finderResult) {
 
     cards.forEach((card) => card.classList.remove('is-found'));
     chosenCard.classList.add('is-found');
-    chosenCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    chosenCard.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    chosenCard.setAttribute('tabindex', '-1');
+    chosenCard.focus({ preventScroll: true });
     finderIndex += 1;
     finderResult.textContent = ` · signal ${((finderIndex - 1) % visibleCards.length) + 1} of ${visibleCards.length}: ${title}`;
+    setFinderLabel('Find next signal', '↗');
   });
 }
 
