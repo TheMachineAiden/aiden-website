@@ -148,8 +148,8 @@ footer a{min-height:44px;display:flex;align-items:center;color:inherit;text-deco
 .orbital{width:72vw;right:-28vw;top:79%;opacity:.7}
 .section-heading{grid-template-columns:1fr}
 .section-heading h2{margin:25px 0}
-.tuner{overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
-.tuner button{min-width:120px}
+.tuner{overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline proximity;-webkit-overflow-scrolling:touch}
+.tuner button{min-width:120px;scroll-snap-align:start}
 .signal-grid{grid-template-columns:1fr}
 .signal-card{min-height:390px}
 .signal-controls{align-items:flex-start;flex-direction:column;gap:10px}.signal-finder{width:100%}
