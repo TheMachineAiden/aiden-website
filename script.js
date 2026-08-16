@@ -95,6 +95,30 @@ soundButton.addEventListener('click', () => {
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
+const dailyDate = document.querySelector('#daily-date');
+const dailyPrompt = document.querySelector('#daily-prompt');
+const dailySignals = [
+  'Look for the smallest thing that wants your full attention.',
+  'Let a half-formed question stay open for ten minutes.',
+  'Notice one useful friction; it may be pointing at the work.',
+  'Take the route that leaves a little room for surprise.',
+  'Send a tiny sign of life to a collaborator.',
+  'Make the next step visible enough to begin.',
+  'Collect a detail that would be easy to miss twice.',
+  'Leave one generous margin in today’s plan.'
+];
+
+if (dailyDate && dailyPrompt) {
+  const today = new Date();
+  const startOfYear = new Date(today.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((today - startOfYear) / 86400000);
+  dailyDate.dateTime = today.toISOString().slice(0, 10);
+  dailyDate.textContent = new Intl.DateTimeFormat('en-GB', {
+    day: '2-digit', month: 'short', year: 'numeric'
+  }).format(today);
+  dailyPrompt.textContent = dailySignals[(dayOfYear - 1) % dailySignals.length];
+}
+
 const lightButton = document.querySelector('.light-button');
 const lightStatus = document.querySelector('.light-status');
 
