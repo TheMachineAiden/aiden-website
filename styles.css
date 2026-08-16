@@ -56,6 +56,9 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}
 .filter-status strong{color:var(--ink);font-weight:500}
 .signal-finder{min-height:44px;flex:0 0 auto;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:10px 13px;font:10px var(--mono);letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:background-color .2s,color .2s}
 .signal-finder:hover{background:var(--ink);color:var(--paper)}
+.daily-frequency{display:grid;grid-template-columns:1fr 2fr;gap:24px;align-items:center;margin:0 0 16px;padding:17px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.daily-frequency .eyebrow{margin:0 0 8px}.daily-date{font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.daily-prompt{margin:0;font:clamp(19px,2vw,28px)/1.25 Georgia,serif;letter-spacing:-.025em;max-width:620px}
 .signal-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
 .signal-card{min-height:420px;border:1px solid var(--ink);padding:24px;display:flex;flex-direction:column;transition:transform .3s,opacity .3s}
 .signal-card.hidden{display:none}
@@ -152,7 +155,7 @@ footer a{min-height:44px;display:flex;align-items:center;color:inherit;text-deco
 .tuner button{min-width:120px;scroll-snap-align:start}
 .signal-grid{grid-template-columns:1fr}
 .signal-card{min-height:390px}
-.signal-controls{align-items:flex-start;flex-direction:column;gap:10px}.signal-finder{width:100%}
+.signal-controls{align-items:flex-start;flex-direction:column;gap:10px}.signal-finder{width:100%}.daily-frequency{grid-template-columns:1fr;gap:12px;padding:16px 0}
 .contact{grid-template-columns:1fr}
 .contact a,.contact .fine{grid-column:1;margin-top:45px}
 footer{gap:20px;flex-wrap:wrap}
