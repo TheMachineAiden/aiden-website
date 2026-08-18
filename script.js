@@ -133,17 +133,20 @@ if (lightButton && lightStatus) {
 
 const bearingButton = document.querySelector('.bearing-button');
 const bearingStatus = document.querySelector('.bearing-status');
+const bearingMark = document.querySelector('.bearing-mark');
 const bearings = [
   'Follow the question with a little static around it.',
   'Turn toward the unfinished thing that keeps returning.',
   'Take the quieter route. It may still be speaking.',
   'Point at the small spark. Give it ten more minutes.'
 ];
+const bearingAngles = ['18deg', '72deg', '132deg', '-35deg'];
 let bearingIndex = 0;
 
 if (bearingButton && bearingStatus) {
   bearingButton.addEventListener('click', () => {
     bearingStatus.textContent = bearings[bearingIndex];
+    bearingMark?.style.setProperty('--bearing-angle', bearingAngles[bearingIndex]);
     bearingIndex = (bearingIndex + 1) % bearings.length;
   });
 }
