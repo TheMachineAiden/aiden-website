@@ -159,11 +159,15 @@ const weatherReadings = [
   'Scattered brightness. A good day to leave room for an interruption.',
   'Warm front approaching. Send the unfinished note.'
 ];
+const weatherStates = ['weather-clear', 'weather-pressure', 'weather-scattered', 'weather-warm'];
 let weatherIndex = 0;
 
 if (weatherButton && weatherStatus) {
   weatherButton.addEventListener('click', () => {
     weatherStatus.textContent = weatherReadings[weatherIndex];
+    const weatherCard = weatherButton.closest('.card-weather');
+    weatherCard?.classList.remove(...weatherStates);
+    weatherCard?.classList.add(weatherStates[weatherIndex]);
     weatherIndex = (weatherIndex + 1) % weatherReadings.length;
   });
 }
