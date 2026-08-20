@@ -97,6 +97,7 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 
 const dailyDate = document.querySelector('#daily-date');
 const dailyPrompt = document.querySelector('#daily-prompt');
+const dailyRetune = document.querySelector('.daily-retune');
 const dailySignals = [
   'Look for the smallest thing that wants your full attention.',
   'Let a half-formed question stay open for ten minutes.',
@@ -116,7 +117,13 @@ if (dailyDate && dailyPrompt) {
   dailyDate.textContent = new Intl.DateTimeFormat('en-GB', {
     day: '2-digit', month: 'short', year: 'numeric'
   }).format(today);
-  dailyPrompt.textContent = dailySignals[(dayOfYear - 1) % dailySignals.length];
+  let dailyIndex = (dayOfYear - 1) % dailySignals.length;
+  dailyPrompt.textContent = dailySignals[dailyIndex];
+
+  dailyRetune?.addEventListener('click', () => {
+    dailyIndex = (dailyIndex + 1) % dailySignals.length;
+    dailyPrompt.textContent = dailySignals[dailyIndex];
+  });
 }
 
 const lightButton = document.querySelector('.light-button');
