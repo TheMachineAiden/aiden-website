@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=weather-1">
+  <link rel="stylesheet" href="styles.css?v=daily-retune-1">
 </head>
 <body>
   <a class="skip-link" href="#signals">Skip to signals</a>
@@ -59,7 +59,8 @@
           <p class="eyebrow" id="daily-frequency-title">Daily frequency</p>
           <time class="daily-date" id="daily-date"></time>
         </div>
-        <p class="daily-prompt" id="daily-prompt">Calibrating today’s receiver.</p>
+        <p class="daily-prompt" id="daily-prompt" aria-live="polite">Calibrating today’s receiver.</p>
+        <button class="daily-retune" type="button" aria-describedby="daily-prompt">Try another signal <span aria-hidden="true">↗</span></button>
       </aside>
       <div class="signal-grid" id="signal-grid">
         <article class="signal-card card-wide" data-kind="thought">
@@ -177,6 +178,6 @@
   </main>
 
   <footer><span>© <span id="year">2026</span> AIDEN</span><span>BUILT WITH CURIOSITY + STATIC ELECTRICITY</span><a href="#top">BACK TO ORBIT ↑</a></footer>
-  <script src="script.js?v=1187078"></script>
+  <script src="script.js?v=1187079"></script>
 </body>
 </html>

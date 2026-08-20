@@ -17,7 +17,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}
 .sound-toggle[aria-pressed="true"] .sound-bars i:nth-child(2){height:13px;animation-delay:.18s}
 .sound-toggle[aria-pressed="true"] .sound-bars i:nth-child(3){height:10px;animation-delay:.36s}
 @keyframes soundLevel{to{height:15px}}
-.wordmark:focus-visible,.sound-toggle:focus-visible,.tuner button:focus-visible,.signal-finder:focus-visible,.signal-detail summary:focus-visible,.light-button:focus-visible,.bearing-button:focus-visible,.weather-button:focus-visible,.rhyme-button:focus-visible,.down:focus-visible,.contact a:focus-visible,footer a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+.wordmark:focus-visible,.sound-toggle:focus-visible,.tuner button:focus-visible,.signal-finder:focus-visible,.daily-retune:focus-visible,.signal-detail summary:focus-visible,.light-button:focus-visible,.bearing-button:focus-visible,.weather-button:focus-visible,.rhyme-button:focus-visible,.down:focus-visible,.contact a:focus-visible,footer a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(255,92,53,0)}
 }
 .hero{min-height:100vh;min-height:100svh;padding:138px 7vw 60px;position:relative;display:flex;align-items:center;border-bottom:1px solid var(--line);overflow:hidden;overflow:clip}
@@ -56,9 +56,10 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}
 .filter-status strong{color:var(--ink);font-weight:500}
 .signal-finder{min-height:44px;flex:0 0 auto;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:10px 13px;font:10px var(--mono);letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:background-color .2s,color .2s}
 .signal-finder:hover{background:var(--ink);color:var(--paper)}
-.daily-frequency{display:grid;grid-template-columns:1fr 2fr;gap:24px;align-items:center;margin:0 0 16px;padding:17px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.daily-frequency{display:grid;grid-template-columns:1fr 2fr auto;gap:24px;align-items:center;margin:0 0 16px;padding:17px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .daily-frequency .eyebrow{margin:0 0 8px}.daily-date{font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .daily-prompt{margin:0;font:clamp(19px,2vw,28px)/1.25 Georgia,serif;letter-spacing:-.025em;max-width:620px}
+.daily-retune{min-height:44px;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:10px 13px;font:10px var(--mono);letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:background-color .2s,color .2s}.daily-retune:hover{background:var(--ink);color:var(--paper)}
 .signal-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
 .signal-card{min-height:420px;border:1px solid var(--ink);padding:24px;display:flex;flex-direction:column;transition:transform .3s,opacity .3s}
 .signal-card.hidden{display:none}
@@ -175,7 +176,7 @@ footer span:nth-child(2){display:none}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
  .orbit,.pulse,.mini-machine span,.receiver-star,.sound-toggle[aria-pressed="true"] .sound-bars i{animation:none}
- .signal-card,.tuner button,.signal-finder,.light-button,.bearing-button,.bearing-mark i,.weather-button,.weather-sun,.weather-cloud,.weather-receiver i,.rhyme-button{transition:none}
+ .signal-card,.tuner button,.signal-finder,.daily-retune,.light-button,.bearing-button,.bearing-mark i,.weather-button,.weather-sun,.weather-cloud,.weather-receiver i,.rhyme-button{transition:none}
  .signal-card.is-found{animation:none}
 .weather-cloud,.weather-receiver i{animation:none}
 .signal-card:hover{transform:none}
