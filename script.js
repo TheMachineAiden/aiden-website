@@ -135,6 +135,7 @@ if (lightButton && lightStatus) {
     lightButton.setAttribute('aria-pressed', String(!placed));
     lightButton.innerHTML = placed ? 'Place a light <span aria-hidden="true">✦</span>' : 'Light placed <span aria-hidden="true">✦</span>';
     lightStatus.textContent = placed ? 'Receiver waiting at blue hour.' : 'Light received. The route has one more witness.';
+    lightButton.closest('.card-dusk')?.classList.toggle('is-lit', !placed);
   });
 }
 
