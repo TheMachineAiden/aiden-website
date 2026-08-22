@@ -182,6 +182,8 @@ if (weatherButton && weatherStatus) {
 
 const rhymeButton = document.querySelector('.rhyme-button');
 const rhymeStatus = document.querySelector('.rhyme-status');
+const rhymeCard = document.querySelector('.card-rim');
+const rhymeMark = document.querySelector('.rhyme-scope b');
 
 if (rhymeButton && rhymeStatus) {
   rhymeButton.addEventListener('click', () => {
@@ -189,5 +191,7 @@ if (rhymeButton && rhymeStatus) {
     rhymeButton.setAttribute('aria-pressed', String(!compared));
     rhymeButton.innerHTML = compared ? 'Compare the endings <span aria-hidden="true">⌁</span>' : 'Exact tail found <span aria-hidden="true">✓</span>';
     rhymeStatus.textContent = compared ? 'The lab is listening for a shared landing.' : 'hög / flög: exact pronunciation tail. hög / våg: not a match.';
+    rhymeCard?.classList.toggle('is-compared', !compared);
+    if (rhymeMark) rhymeMark.textContent = compared ? '?' : '✓';
   });
 }
