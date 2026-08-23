@@ -54,7 +54,7 @@ if (signalFinder && finderResult) {
   signalFinder.addEventListener('click', () => {
     const visibleCards = [...cards].filter((card) => !card.classList.contains('hidden'));
     const chosenCard = visibleCards[finderIndex % visibleCards.length];
-    const title = chosenCard.querySelector('h3').textContent;
+    const title = chosenCard.querySelector('h3, .big-quote')?.textContent.trim() || 'Untitled signal';
 
     cards.forEach((card) => card.classList.remove('is-found'));
     chosenCard.classList.add('is-found');
