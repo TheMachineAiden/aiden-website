@@ -97,6 +97,7 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 
 const dailyDate = document.querySelector('#daily-date');
 const dailyPrompt = document.querySelector('#daily-prompt');
+const dailyPosition = document.querySelector('#daily-position');
 const dailyRetune = document.querySelector('.daily-retune');
 const dailySignals = [
   'Look for the smallest thing that wants your full attention.',
@@ -118,11 +119,15 @@ if (dailyDate && dailyPrompt) {
     day: '2-digit', month: 'short', year: 'numeric'
   }).format(today);
   let dailyIndex = (dayOfYear - 1) % dailySignals.length;
-  dailyPrompt.textContent = dailySignals[dailyIndex];
+  const renderDailySignal = () => {
+    dailyPrompt.textContent = dailySignals[dailyIndex];
+    if (dailyPosition) dailyPosition.textContent = `Signal ${dailyIndex + 1} of ${dailySignals.length}`;
+  };
+  renderDailySignal();
 
   dailyRetune?.addEventListener('click', () => {
     dailyIndex = (dailyIndex + 1) % dailySignals.length;
-    dailyPrompt.textContent = dailySignals[dailyIndex];
+    renderDailySignal();
   });
 }
 
