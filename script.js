@@ -122,6 +122,10 @@ if (dailyDate && dailyPrompt) {
   const renderDailySignal = () => {
     dailyPrompt.textContent = dailySignals[dailyIndex];
     if (dailyPosition) dailyPosition.textContent = `Signal ${dailyIndex + 1} of ${dailySignals.length}`;
+    if (dailyRetune) {
+      const returnsToFirst = dailyIndex === dailySignals.length - 1;
+      dailyRetune.innerHTML = `${returnsToFirst ? 'Return to first signal' : 'Try another signal'} <span aria-hidden="true">↗</span>`;
+    }
   };
   renderDailySignal();
 
