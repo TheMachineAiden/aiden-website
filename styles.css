@@ -167,7 +167,7 @@ footer a{min-height:44px;display:flex;align-items:center;color:inherit;text-deco
 footer{gap:20px;flex-wrap:wrap}
 footer span:nth-child(2){display:none}
 }
-@media(max-width:340px){.topbar{padding:0 3vw}.wordmark{font-size:14px}.sound-toggle{font-size:10px;letter-spacing:.08em;white-space:nowrap}.sound-bars{width:17px;margin-right:6px;gap:2px}}
+@media(max-width:340px){.topbar{padding:0 3vw}.wordmark{font-size:14px}.sound-toggle{font-size:10px;letter-spacing:.08em;white-space:nowrap}.sound-bars{width:17px;margin-right:6px;gap:2px}.tuner button{min-width:96px;padding-left:10px;padding-right:10px}}
 @media(max-height:500px) and (orientation:landscape){.hero{padding-top:105px;min-height:620px}
 .hero h1{font-size:clamp(62px,9vw,110px)}
 .orbital{width:32vw;right:-3vw;top:22%;opacity:.55}
