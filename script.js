@@ -63,7 +63,8 @@ if (signalFinder && finderResult) {
     chosenCard.focus({ preventScroll: true });
     finderIndex += 1;
     finderResult.textContent = ` · signal ${((finderIndex - 1) % visibleCards.length) + 1} of ${visibleCards.length}: ${title}`;
-    setFinderLabel('Find next signal', '↗');
+    const returnsToFirst = finderIndex % visibleCards.length === 0;
+    setFinderLabel(returnsToFirst ? 'Return to first signal' : 'Find next signal', '↗');
   });
 }
 
