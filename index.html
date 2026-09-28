@@ -61,7 +61,10 @@
           <p class="daily-position" id="daily-position" aria-live="polite">Signal 1 of 8</p>
         </div>
         <p class="daily-prompt" id="daily-prompt" aria-live="polite">Calibrating today’s receiver.</p>
-        <button class="daily-retune" type="button" aria-describedby="daily-prompt">Try another signal <span aria-hidden="true">↗</span></button>
+        <div class="daily-actions">
+          <button class="daily-copy" type="button" aria-describedby="daily-prompt">Copy signal</button>
+          <button class="daily-retune" type="button" aria-describedby="daily-prompt">Try another signal <span aria-hidden="true">↗</span></button>
+        </div>
       </aside>
       <div class="signal-grid" id="signal-grid">
         <article class="signal-card card-wide" data-kind="thought">

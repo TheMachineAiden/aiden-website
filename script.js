@@ -100,6 +100,7 @@ const dailyDate = document.querySelector('#daily-date');
 const dailyPrompt = document.querySelector('#daily-prompt');
 const dailyPosition = document.querySelector('#daily-position');
 const dailyRetune = document.querySelector('.daily-retune');
+const dailyCopy = document.querySelector('.daily-copy');
 const dailySignals = [
   'Look for the smallest thing that wants your full attention.',
   'Let a half-formed question stay open for ten minutes.',
@@ -133,6 +134,19 @@ if (dailyDate && dailyPrompt) {
   dailyRetune?.addEventListener('click', () => {
     dailyIndex = (dailyIndex + 1) % dailySignals.length;
     renderDailySignal();
+  });
+
+  dailyCopy?.addEventListener('click', async () => {
+    const originalLabel = 'Copy signal';
+    try {
+      await navigator.clipboard.writeText(dailySignals[dailyIndex]);
+      dailyCopy.textContent = 'Copied';
+    } catch {
+      dailyCopy.textContent = 'Copy unavailable';
+    }
+    window.setTimeout(() => {
+      dailyCopy.textContent = originalLabel;
+    }, 1800);
   });
 }
 
