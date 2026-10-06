@@ -4,10 +4,17 @@ const filterLabel = document.querySelector('#filter-label');
 const filterCount = document.querySelector('#filter-count');
 const signalFinder = document.querySelector('.signal-finder');
 const finderResult = document.querySelector('#finder-result');
+const signalHeading = document.querySelector('#signals-title');
 let finderIndex = 0;
 const setFinderLabel = (label, symbol) => {
   signalFinder.innerHTML = `${label} <span aria-hidden="true">${symbol}</span>`;
 };
+
+document.querySelectorAll('a[href="#signals"]').forEach((link) => {
+  link.addEventListener('click', () => {
+    window.setTimeout(() => signalHeading?.focus({ preventScroll: true }));
+  });
+});
 
 const tuneTo = (button) => {
   filterButtons.forEach((item) => {
