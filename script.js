@@ -128,7 +128,12 @@ if (dailyDate && dailyPrompt) {
     day: '2-digit', month: 'short', year: 'numeric'
   }).format(today);
   let dailyIndex = (dayOfYear - 1) % dailySignals.length;
+  let copyFeedbackTimer;
+  let copyRequest = 0;
   const renderDailySignal = () => {
+    copyRequest += 1;
+    window.clearTimeout(copyFeedbackTimer);
+    if (dailyCopy) dailyCopy.textContent = 'Copy signal';
     dailyPrompt.textContent = dailySignals[dailyIndex];
     if (dailyPosition) dailyPosition.textContent = `Signal ${dailyIndex + 1} of ${dailySignals.length}`;
     if (dailyRetune) {
@@ -144,15 +149,19 @@ if (dailyDate && dailyPrompt) {
   });
 
   dailyCopy?.addEventListener('click', async () => {
-    const originalLabel = 'Copy signal';
+    const request = ++copyRequest;
+    let feedback;
     try {
       await navigator.clipboard.writeText(dailySignals[dailyIndex]);
-      dailyCopy.textContent = 'Copied';
+      feedback = 'Copied';
     } catch {
-      dailyCopy.textContent = 'Copy unavailable';
+      feedback = 'Copy unavailable';
     }
-    window.setTimeout(() => {
-      dailyCopy.textContent = originalLabel;
+    if (request !== copyRequest) return;
+    window.clearTimeout(copyFeedbackTimer);
+    dailyCopy.textContent = feedback;
+    copyFeedbackTimer = window.setTimeout(() => {
+      dailyCopy.textContent = 'Copy signal';
     }, 1800);
   });
 }
