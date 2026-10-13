@@ -121,9 +121,11 @@ const dailySignals = [
 
 if (dailyDate && dailyPrompt) {
   const today = new Date();
-  const startOfYear = new Date(today.getFullYear(), 0, 0);
-  const dayOfYear = Math.floor((today - startOfYear) / 86400000);
-  dailyDate.dateTime = today.toISOString().slice(0, 10);
+  // Count local calendar days without daylight-saving changes in their length.
+  const calendarDay = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+  const startOfYear = Date.UTC(today.getFullYear(), 0, 0);
+  const dayOfYear = (calendarDay - startOfYear) / 86400000;
+  dailyDate.dateTime = new Date(calendarDay).toISOString().slice(0, 10);
   dailyDate.textContent = new Intl.DateTimeFormat('en-GB', {
     day: '2-digit', month: 'short', year: 'numeric'
   }).format(today);
