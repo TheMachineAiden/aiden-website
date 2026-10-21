@@ -177,6 +177,7 @@ footer span:nth-child(2){display:none}
 @media(hover:hover){.signal-card:hover{transform:translateY(-5px)}
 .tuner button:hover{background:var(--ink);color:var(--paper)}
 }
+@media(forced-colors:active){.tuner button[aria-pressed="true"]{background:Highlight;color:HighlightText;forced-color-adjust:none}.tuner button:focus-visible{outline-color:CanvasText}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
  .orbit,.pulse,.mini-machine span,.receiver-star,.sound-toggle[aria-pressed="true"] .sound-bars i{animation:none}
  .signal-card,.card-dusk,.tuner button,.signal-finder,.daily-copy,.daily-retune,.light-button,.bearing-button,.bearing-mark i,.weather-button,.weather-sun,.weather-cloud,.weather-receiver i,.rhyme-button,.rhyme-scope b{transition:none}
