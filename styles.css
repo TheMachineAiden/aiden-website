@@ -163,7 +163,7 @@ footer a{min-height:44px;display:flex;align-items:center;color:inherit;text-deco
 .tuner button{min-width:calc(100% / 3);scroll-snap-align:start}
 .signal-grid{grid-template-columns:1fr}
 .signal-card{min-height:390px}
-.signal-controls{align-items:flex-start;flex-direction:column;gap:10px}.signal-finder,.daily-actions{width:100%}.daily-frequency{grid-template-columns:1fr;gap:12px;padding:16px 0}.daily-actions{justify-content:stretch}.daily-copy,.daily-retune{flex:1}
+.signal-controls{align-items:flex-start;flex-direction:column;gap:10px}.signal-finder,.daily-actions{width:100%}.daily-frequency{grid-template-columns:1fr;gap:12px;padding:16px 0}.daily-actions{justify-content:stretch;flex-wrap:wrap}.daily-copy,.daily-retune{flex:1}
 .contact{grid-template-columns:1fr}
 .contact a,.contact .fine{grid-column:1;margin-top:45px}
 footer{gap:20px;flex-wrap:wrap}
