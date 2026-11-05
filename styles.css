@@ -175,7 +175,7 @@ footer span:nth-child(2){display:none}
 .orbital{width:32vw;right:-3vw;top:22%;opacity:.55}
 }
 @media(hover:hover){.signal-card:hover{transform:translateY(-5px)}
-.tuner button:hover{background:var(--ink);color:var(--paper)}
+.tuner button:not(.active):hover{background:rgba(23,24,19,.08);color:var(--ink)}
 }
 @media(forced-colors:active){.tuner button[aria-pressed="true"]{background:Highlight;color:HighlightText;forced-color-adjust:none}.tuner button:focus-visible{outline-color:CanvasText}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
