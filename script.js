@@ -120,16 +120,9 @@ const dailySignals = [
 ];
 
 if (dailyDate && dailyPrompt) {
-  const today = new Date();
-  // Count local calendar days without daylight-saving changes in their length.
-  const calendarDay = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
-  const startOfYear = Date.UTC(today.getFullYear(), 0, 0);
-  const dayOfYear = (calendarDay - startOfYear) / 86400000;
-  dailyDate.dateTime = new Date(calendarDay).toISOString().slice(0, 10);
-  dailyDate.textContent = new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit', month: 'short', year: 'numeric'
-  }).format(today);
-  let dailyIndex = (dayOfYear - 1) % dailySignals.length;
+  let dailyIndex;
+  let currentCalendarDay;
+  let dailyRefreshTimer;
   let copyFeedbackTimer;
   let copyRequest = 0;
   const renderDailySignal = () => {
@@ -143,7 +136,33 @@ if (dailyDate && dailyPrompt) {
       dailyRetune.innerHTML = `${returnsToFirst ? 'Return to first signal' : 'Try another signal'} <span aria-hidden="true">↗</span>`;
     }
   };
-  renderDailySignal();
+  const refreshDailySignal = () => {
+    const today = new Date();
+    // Count local calendar days without daylight-saving changes in their length.
+    const calendarDay = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+    if (calendarDay !== currentCalendarDay) {
+      currentCalendarDay = calendarDay;
+      const startOfYear = Date.UTC(today.getFullYear(), 0, 0);
+      const dayOfYear = (calendarDay - startOfYear) / 86400000;
+      dailyIndex = (dayOfYear - 1) % dailySignals.length;
+      dailyDate.dateTime = new Date(calendarDay).toISOString().slice(0, 10);
+      dailyDate.textContent = new Intl.DateTimeFormat('en-GB', {
+        day: '2-digit', month: 'short', year: 'numeric'
+      }).format(today);
+      renderDailySignal();
+    }
+
+    // Recompute local midnight: the next calendar day may be 23 or 25 hours away.
+    const nextMidnight = new Date(today);
+    nextMidnight.setHours(24, 0, 0, 0);
+    window.clearTimeout(dailyRefreshTimer);
+    dailyRefreshTimer = window.setTimeout(refreshDailySignal, nextMidnight - today);
+  };
+  refreshDailySignal();
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') refreshDailySignal();
+  });
+  window.addEventListener('pageshow', refreshDailySignal);
 
   dailyRetune?.addEventListener('click', () => {
     dailyIndex = (dailyIndex + 1) % dailySignals.length;
