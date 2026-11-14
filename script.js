@@ -1,3 +1,13 @@
+// Preferences are optional: denied or malformed storage must not interrupt the notebook.
+const readPreference = (key) => {
+  try { return JSON.parse(localStorage.getItem(`signal-garden:${key}`)); }
+  catch { return null; }
+};
+const savePreference = (key, value) => {
+  try { localStorage.setItem(`signal-garden:${key}`, JSON.stringify(value)); }
+  catch { /* The interface also works without persistent storage. */ }
+};
+
 const filterButtons = document.querySelectorAll('.tuner button');
 const cards = document.querySelectorAll('.signal-card');
 const filterLabel = document.querySelector('#filter-label');
@@ -6,9 +16,7 @@ const signalFinder = document.querySelector('.signal-finder');
 const finderResult = document.querySelector('#finder-result');
 const signalHeading = document.querySelector('#signals-title');
 let finderIndex = 0;
-const setFinderLabel = (label, symbol) => {
-  signalFinder.innerHTML = `${label} <span aria-hidden="true">${symbol}</span>`;
-};
+const setFinderLabel = (label) => { signalFinder.textContent = label; };
 
 document.querySelectorAll('a[href="#signals"]').forEach((link) => {
   link.addEventListener('click', () => {
@@ -29,13 +37,18 @@ const tuneTo = (button) => {
     card.classList.toggle('hidden', !visibleCards.includes(card));
     card.classList.remove('is-found');
   });
+  // Nested groups disappear only when none of their actual signals remain visible.
+  document.querySelectorAll('[data-signal-group]').forEach((group) => {
+    group.hidden = ![...group.querySelectorAll('.signal-card')].some((card) => !card.classList.contains('hidden'));
+  });
+  savePreference('filter', filter);
   const label = button.childNodes[0].textContent.trim().toLowerCase();
   const noun = visibleCards.length === 1 ? 'transmission' : 'transmissions';
   filterLabel.textContent = label;
   filterCount.textContent = `${visibleCards.length} ${noun}`;
   finderResult.textContent = '';
   finderIndex = 0;
-  setFinderLabel('Find a signal', '↗');
+  setFinderLabel('Find a signal');
 };
 
 filterButtons.forEach((button, index) => {
@@ -71,34 +84,53 @@ if (signalFinder && finderResult) {
     finderIndex += 1;
     finderResult.textContent = ` · signal ${((finderIndex - 1) % visibleCards.length) + 1} of ${visibleCards.length}: ${title}`;
     const returnsToFirst = finderIndex % visibleCards.length === 0;
-    setFinderLabel(returnsToFirst ? 'Return to first signal' : 'Find next signal', '↗');
+    setFinderLabel(returnsToFirst ? 'Return to first signal' : 'Find next signal');
   });
 }
 
-const soundButton = document.querySelector('.sound-toggle');
-let audioContext;
-let oscillator;
-let gain;
+const storedFilter = readPreference('filter');
+const initialFilter = [...filterButtons].find((button) => button.dataset.filter === storedFilter);
+if (initialFilter) tuneTo(initialFilter);
 
+document.querySelectorAll('a[href="#experiments"]').forEach((link) => {
+  link.addEventListener('click', () => {
+    if (document.querySelector('#experiments').hidden) tuneTo(filterButtons[0]);
+    window.setTimeout(() => document.querySelector('#experiments-title')?.focus({ preventScroll: true }));
+  });
+});
+
+const soundButton = document.querySelector('.sound-toggle');
+let currentAtmosphere;
 soundButton.addEventListener('click', () => {
   const turningOn = soundButton.getAttribute('aria-pressed') === 'false';
-  soundButton.setAttribute('aria-pressed', String(turningOn));
-  soundButton.querySelector('.sound-label').textContent = turningOn ? 'atmosphere on' : 'atmosphere off';
-
   if (turningOn) {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    oscillator = audioContext.createOscillator();
-    gain = audioContext.createGain();
+    const AudioEngine = window.AudioContext || window.webkitAudioContext;
+    if (!AudioEngine) {
+      soundButton.querySelector('.sound-label').textContent = 'audio unavailable';
+      return;
+    }
+    const context = new AudioEngine();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
     oscillator.type = 'sine';
     oscillator.frequency.value = 54;
-    gain.gain.value = 0.018;
-    oscillator.connect(gain).connect(audioContext.destination);
+    gain.gain.setValueAtTime(0.0001, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.018, context.currentTime + 0.2);
+    oscillator.connect(gain).connect(context.destination);
     oscillator.start();
-  } else if (audioContext) {
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.2);
-    oscillator.stop(audioContext.currentTime + 0.21);
-    audioContext.close();
+    currentAtmosphere = { context, oscillator, gain };
+  } else if (currentAtmosphere) {
+    // Keep the old context alive until its fade finishes, even after a rapid restart.
+    const { context, oscillator, gain } = currentAtmosphere;
+    gain.gain.cancelScheduledValues(context.currentTime);
+    gain.gain.setValueAtTime(Math.max(gain.gain.value, 0.0001), context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.2);
+    oscillator.onended = () => context.close();
+    oscillator.stop(context.currentTime + 0.21);
+    currentAtmosphere = null;
   }
+  soundButton.setAttribute('aria-pressed', String(turningOn));
+  soundButton.querySelector('.sound-label').textContent = turningOn ? 'atmosphere on' : 'atmosphere off';
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();
@@ -133,7 +165,7 @@ if (dailyDate && dailyPrompt) {
     if (dailyPosition) dailyPosition.textContent = `Signal ${dailyIndex + 1} of ${dailySignals.length}`;
     if (dailyRetune) {
       const returnsToFirst = dailyIndex === dailySignals.length - 1;
-      dailyRetune.innerHTML = `${returnsToFirst ? 'Return to first signal' : 'Try another signal'} <span aria-hidden="true">↗</span>`;
+      dailyRetune.textContent = returnsToFirst ? 'Return to first signal' : 'Try another signal';
     }
   };
   const refreshDailySignal = () => {
@@ -144,7 +176,9 @@ if (dailyDate && dailyPrompt) {
       currentCalendarDay = calendarDay;
       const startOfYear = Date.UTC(today.getFullYear(), 0, 0);
       const dayOfYear = (calendarDay - startOfYear) / 86400000;
-      dailyIndex = (dayOfYear - 1) % dailySignals.length;
+      const saved = readPreference('daily');
+      dailyIndex = saved?.day === calendarDay && Number.isInteger(saved.index) && saved.index >= 0 && saved.index < dailySignals.length
+        ? saved.index : (dayOfYear - 1) % dailySignals.length;
       dailyDate.dateTime = new Date(calendarDay).toISOString().slice(0, 10);
       dailyDate.textContent = new Intl.DateTimeFormat('en-GB', {
         day: '2-digit', month: 'short', year: 'numeric'
@@ -166,6 +200,7 @@ if (dailyDate && dailyPrompt) {
 
   dailyRetune?.addEventListener('click', () => {
     dailyIndex = (dailyIndex + 1) % dailySignals.length;
+    savePreference('daily', { day: currentCalendarDay, index: dailyIndex });
     renderDailySignal();
   });
 
@@ -244,7 +279,6 @@ if (weatherButton && weatherStatus) {
 const rhymeButton = document.querySelector('.rhyme-button');
 const rhymeStatus = document.querySelector('.rhyme-status');
 const rhymeCard = document.querySelector('.card-rim');
-const rhymeMark = document.querySelector('.rhyme-scope b');
 
 if (rhymeButton && rhymeStatus) {
   rhymeButton.addEventListener('click', () => {
@@ -253,6 +287,40 @@ if (rhymeButton && rhymeStatus) {
     rhymeButton.innerHTML = compared ? 'Compare the endings <span aria-hidden="true">⌁</span>' : 'Exact tail found <span aria-hidden="true">✓</span>';
     rhymeStatus.textContent = compared ? 'The lab is listening for a shared landing.' : 'hög / flög: exact pronunciation tail. hög / våg: not a match.';
     rhymeCard?.classList.toggle('is-compared', !compared);
-    if (rhymeMark) rhymeMark.textContent = compared ? '?' : '✓';
   });
 }
+
+// Native details retain their semantics and work without JavaScript. Animate their real
+// height in both directions; a new activation begins at the interrupted visual height.
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelectorAll('.signal-detail').forEach((details) => {
+  const summary = details.querySelector('summary');
+  const content = document.createElement('div');
+  content.className = 'detail-content';
+  [...details.children].filter((child) => child !== summary).forEach((child) => content.append(child));
+  details.append(content);
+  let animation;
+  let desiredOpen = details.open;
+  const settle = () => {
+    animation?.cancel();
+    animation = null;
+    details.open = desiredOpen;
+    details.style.overflow = '';
+    details.style.height = '';
+  };
+  summary.addEventListener('click', (event) => {
+    event.preventDefault();
+    const start = details.getBoundingClientRect().height;
+    desiredOpen = !desiredOpen;
+    animation?.cancel();
+    details.open = true;
+    const target = desiredOpen ? summary.getBoundingClientRect().height + content.getBoundingClientRect().height : summary.getBoundingClientRect().height;
+    if (reducedMotion.matches) { settle(); return; }
+    details.style.overflow = 'hidden';
+    animation = details.animate([{ height: `${start}px` }, { height: `${target}px` }], {
+      duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both'
+    });
+    animation.onfinish = settle;
+  });
+  reducedMotion.addEventListener('change', settle);
+});
