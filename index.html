@@ -3,73 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#11120f">
+  <meta name="theme-color" content="#f5f1e7">
   <meta name="description" content="Aiden's Signal Garden — a living notebook of ideas, experiments, and things worth noticing.">
   <title>Aiden — Signal Garden</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=contained-filter-focus-1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design/tokens.css?v=notebook-1">
+  <link rel="stylesheet" href="styles.css?v=notebook-1">
 </head>
 <body>
   <a class="skip-link" href="#signals">Skip to signals</a>
-  <div class="grain" aria-hidden="true"></div>
-  <header class="topbar">
-    <a class="wordmark" href="#top" aria-label="Aiden, home"><span class="pulse"></span>AIDEN</a>
-    <div class="coordinates"><a href="museum/">Museum of Almost ↗</a><span>59.3293° N</span><span>18.0686° E</span></div>
-    <button class="sound-toggle" type="button" aria-pressed="false"><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="sound-label">atmosphere off</span></button>
-  </header>
-
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">A living field notebook <span>№ 001</span></p>
-        <h1 id="hero-title">I collect<br><em>signals</em> in<br>the noise.</h1>
+  <div class="site-shell" id="top">
+    <header class="topbar">
+      <a class="wordmark" href="#top" aria-label="Aiden's Signal Garden, home">
+        <svg class="garden-mark" viewBox="0 0 64 80" aria-hidden="true"><path d="M31 74Q29 47 34 17M33 38Q14 35 13 21Q32 19 33 38ZM33 48Q51 43 54 29Q35 29 33 48ZM33 21L20 10M35 15L45 6M32 64Q17 57 15 47Q30 46 32 64"/></svg>
+        <span>Signal Garden<small>A field notebook by Aiden</small></span>
+      </a>
+      <nav aria-label="Main navigation"><a href="#signals">Notebook</a><a href="#experiments">Experiments</a><a href="museum/">Museum</a></nav>
+      <button class="sound-toggle" type="button" aria-pressed="false"><span class="sound-dot" aria-hidden="true"></span><span class="sound-label">atmosphere off</span></button>
+    </header>
+    <main>
+      <section class="arrival" aria-labelledby="hero-title">
+        <div><p class="eyebrow">A living field notebook · 59.3293° N, 18.0686° E</p><h1 id="hero-title">I collect <em>signals</em> in the noise.</h1></div>
         <p class="intro">Ideas, small machines, unfinished questions, and observations from the edge of the map.</p>
-      </div>
-      <div class="orbital" aria-hidden="true">
-        <div class="orbit orbit-one"><i></i></div>
-        <div class="orbit orbit-two"><i></i></div>
-        <div class="orbit orbit-three"><i></i></div>
-        <div class="core"><span>RECEIVING</span><b>◉</b></div>
-      </div>
-      <a class="down" href="#signals">Scroll to tune in <span>↓</span></a>
-    </section>
-
-    <section class="signals" id="signals" aria-labelledby="signals-title">
-      <div class="section-heading">
-        <p class="eyebrow">Recent transmissions</p>
-        <h2 id="signals-title" tabindex="-1">What’s on<br>the frequency</h2>
-        <p>Selected fragments from the workbench. Tune the dial to filter the field.</p>
-      </div>
-      <div class="tuner" role="group" aria-label="Filter signals">
-        <button class="active" data-filter="all" aria-pressed="true" aria-controls="signal-grid">All <sup>08</sup></button>
-        <button data-filter="thought" aria-pressed="false" aria-controls="signal-grid">Thoughts <sup>02</sup></button>
-        <button data-filter="build" aria-pressed="false" aria-controls="signal-grid">Builds <sup>01</sup></button>
-        <button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>05</sup></button>
-      </div>
-      <p class="tuner-help">Swipe the dial, or use the left and right arrow keys to tune in.</p>
-      <div class="signal-controls">
-        <p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">8 transmissions</span><span id="finder-result"></span></p>
-        <button class="signal-finder" type="button" aria-describedby="filter-status">Find a signal <span aria-hidden="true">↗</span></button>
-      </div>
-      <aside class="daily-frequency" aria-labelledby="daily-frequency-title">
-        <div>
-          <p class="eyebrow" id="daily-frequency-title">Daily frequency</p>
-          <time class="daily-date" id="daily-date"></time>
-          <p class="daily-position" id="daily-position" aria-live="polite">Signal 1 of 8</p>
+      </section>
+      <aside class="daily-frequency surface-dark" aria-labelledby="daily-frequency-title">
+        <div class="daily-copy-area">
+          <div class="daily-meta"><p class="eyebrow" id="daily-frequency-title">Daily frequency</p><time id="daily-date"></time></div>
+          <p class="daily-prompt" id="daily-prompt" aria-live="polite">Calibrating today’s receiver.</p>
+          <div class="daily-bottom"><div class="daily-actions"><button class="daily-copy control control--paper" type="button" aria-describedby="daily-prompt">Copy signal</button><button class="daily-retune control" type="button" aria-describedby="daily-prompt">Try another signal</button></div><p class="daily-position" id="daily-position" aria-live="polite">Signal 1 of 8</p></div>
         </div>
-        <p class="daily-prompt" id="daily-prompt" aria-live="polite">Calibrating today’s receiver.</p>
-        <div class="daily-actions">
-          <button class="daily-copy" type="button" aria-describedby="daily-prompt">Copy signal</button>
-          <button class="daily-retune" type="button" aria-describedby="daily-prompt">Try another signal <span aria-hidden="true">↗</span></button>
-        </div>
+        <img class="receiver-landscape" src="assets/receiver.png" alt="" width="1440" height="1080">
       </aside>
-      <div class="signal-grid" id="signal-grid">
-        <article class="signal-card card-wide" data-kind="thought">
+      <section class="signals" id="signals" aria-labelledby="signals-title">
+        <div class="section-heading"><div><p class="eyebrow">Recent transmissions</p><h2 id="signals-title" tabindex="-1">From the notebook</h2></div><p>Selected fragments from the workbench.<br> Tune the dial to filter the field.</p></div>
+        <div class="collection-tools"><div class="tuner" role="group" aria-label="Filter signals"><button class="active" data-filter="all" aria-pressed="true" aria-controls="signal-grid">All <sup>08</sup></button><button data-filter="thought" aria-pressed="false" aria-controls="signal-grid">Thoughts <sup>02</sup></button><button data-filter="build" aria-pressed="false" aria-controls="signal-grid">Builds <sup>01</sup></button><button data-filter="field" aria-pressed="false" aria-controls="signal-grid">Field notes <sup>05</sup></button></div><button class="signal-finder control" type="button" aria-describedby="filter-status">Find a signal</button></div>
+        <div class="signal-controls"><p class="filter-status" id="filter-status" aria-live="polite" aria-atomic="true">Tuned to <strong id="filter-label">all signals</strong> · <span id="filter-count">8 transmissions</span><span id="finder-result"></span></p><p class="tuner-help">Use ← → to tune the dial.</p></div>
+        <div id="signal-grid">
+          <div class="notebook-layout" data-signal-group>
+            <div class="notebook-entries" data-signal-group><article class="signal-card notebook-entry card-wide" data-kind="thought">
           <div class="card-meta"><span>001 / THOUGHT</span><time datetime="2026-07-16">JUL 16, 2026</time></div>
-          <div class="wave" aria-hidden="true"></div>
           <h3>The best tools leave room for surprise.</h3>
           <p>A note on building systems that amplify curiosity instead of sanding down every rough edge.</p>
           <details class="signal-detail">
@@ -77,9 +52,8 @@
             <p>The rough edge is often where a person decides to play. A useful tool keeps that invitation intact.</p>
           </details>
         </article>
-        <article class="signal-card card-dark" data-kind="build">
+<article class="signal-card notebook-entry card-dark" data-kind="build">
           <div class="card-meta"><span>002 / BUILD</span><time datetime="2026-07-10">JUL 10, 2026</time></div>
-          <div class="mini-machine" aria-hidden="true"><span></span><span></span><span></span></div>
           <h3>A tiny machine for finding connections</h3>
           <p>Prototype: feed it two unrelated ideas and watch it trace the hidden path between them.</p>
           <details class="signal-detail">
@@ -87,7 +61,16 @@
             <p>For now, the machine only needs a way in, a way across, and a way back. The connection can stay strange if the path is legible.</p>
           </details>
         </article>
-        <article class="signal-card card-acid" data-kind="field">
+<article class="signal-card notebook-entry" data-kind="thought">
+          <div class="card-meta"><span>004 / THOUGHT</span><time datetime="2026-06-28">JUN 28, 2026</time></div>
+          <h3>Keep the edges porous.</h3>
+          <p>Closed systems optimize. Open systems evolve.</p>
+          <details class="signal-detail">
+            <summary>Unfold thought</summary>
+            <p>Porous edges let an idea be changed by contact. They are how a system notices what it did not plan for.</p>
+          </details>
+        </article></div>
+            <aside class="margin-notes" data-signal-group><article class="signal-card notebook-entry card-acid" data-kind="field">
           <div class="card-meta"><span>003 / FIELD NOTE</span><time datetime="2026-07-04">JUL 04, 2026</time></div>
           <p class="big-quote">“A city is a conversation between what was planned and what escaped the plan.”</p>
           <span class="location">OBSERVED WHILE WALKING NORTH</span>
@@ -95,23 +78,11 @@
             <summary>Unfold observation</summary>
             <p>Street grids, bike bells, window light: every block added a different reply to the city’s ongoing sentence.</p>
           </details>
-        </article>
-        <article class="signal-card" data-kind="thought">
-          <div class="card-meta"><span>004 / THOUGHT</span><time datetime="2026-06-28">JUN 28, 2026</time></div>
-          <div class="constellation" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-          <h3>Keep the edges porous.</h3>
-          <p>Closed systems optimize. Open systems evolve.</p>
-          <details class="signal-detail">
-            <summary>Unfold thought</summary>
-            <p>Porous edges let an idea be changed by contact. They are how a system notices what it did not plan for.</p>
-          </details>
-        </article>
-        <article class="signal-card card-dusk" data-kind="field">
-          <div class="card-meta"><span>005 / EVENING RITUAL</span><time datetime="2026-07-24">JUL 24, 2026</time></div>
-          <div class="dusk-receiver" aria-hidden="true">
-            <span class="receiver-horizon"></span>
-            <span class="receiver-star star-one"></span><span class="receiver-star star-two"></span><span class="receiver-star star-three"></span><span class="receiver-star star-four"></span><span class="receiver-star star-five"></span>
+        </article><a class="museum-note" href="museum/"><span class="eyebrow">Museum of Almost</span><span>Take a look at what almost was.</span><span class="museum-door" aria-hidden="true">⌂</span></a></aside>
           </div>
+          <section class="experiments" id="experiments" aria-labelledby="experiments-title" data-signal-group><div class="section-heading"><div><p class="eyebrow">Small machines, open questions</p><h2 id="experiments-title" tabindex="-1">A few things to try</h2></div><p>Leave a light. Take a bearing.<br> See what answers back.</p></div><div class="experiment-grid"><article class="signal-card experiment card-dusk" data-kind="field">
+          <div class="card-meta"><span>005 / EVENING RITUAL</span><time datetime="2026-07-24">JUL 24, 2026</time></div>
+          <div class="dusk-receiver" aria-hidden="true"></div>
           <h3>Leave one light for the way home.</h3>
           <p>Tonight’s receiver is collecting small navigations: a window, a bike lamp, the last bright seam under a door.</p>
           <button class="light-button" type="button" aria-pressed="false">Place a light <span aria-hidden="true">✦</span></button>
@@ -121,21 +92,21 @@
             <p>At 20:30, the city stops being one thing. It becomes a scattered agreement: keep going, someone has left a light on.</p>
           </details>
         </article>
-        <article class="signal-card card-bearing" data-kind="field">
+<article class="signal-card experiment card-bearing" data-kind="field">
           <div class="card-meta"><span>006 / FIELD NOTE</span><time datetime="2026-07-25">JUL 25, 2026</time></div>
-          <div class="bearing-mark" aria-hidden="true"><span>N</span><i></i><b>?</b><em></em></div>
+          <div class="bearing-mark" aria-hidden="true"></div>
           <h3>A compass can be a question.</h3>
           <p>When the map gets too loud, choose one small direction and see what answers back.</p>
-          <button class="bearing-button" type="button">Take a bearing <span aria-hidden="true">↗</span></button>
+          <button class="bearing-button" type="button">Take a bearing </button>
           <p class="bearing-status" aria-live="polite">The needle is listening.</p>
           <details class="signal-detail">
             <summary>Read the pocket instruction</summary>
             <p>Point toward the thing that makes the next hour feel a little more alive. You do not have to know the destination yet.</p>
           </details>
         </article>
-        <article class="signal-card card-weather" data-kind="field">
+<article class="signal-card experiment card-weather" data-kind="field">
           <div class="card-meta"><span>007 / FIELD NOTE</span><time datetime="2026-07-26">JUL 26, 2026</time></div>
-          <div class="weather-receiver" aria-hidden="true"><span class="weather-sun"></span><span class="weather-cloud cloud-one"></span><span class="weather-cloud cloud-two"></span><i></i><i></i><i></i></div>
+          <div class="weather-receiver" aria-hidden="true"></div>
           <h3>There is weather inside the weather.</h3>
           <p>A pocket receiver for the small conditions of a morning: the room’s temperature, the street’s pace, the shape of your attention.</p>
           <button class="weather-button" type="button">Read the local weather <span aria-hidden="true">⌁</span></button>
@@ -145,9 +116,9 @@
             <p>Forecasts are useful, but they miss the pressure system around an idea. Before making a plan, notice whether today feels like a window opening, a kettle beginning, or a coat you are ready to take off.</p>
           </details>
         </article>
-        <article class="signal-card card-rim" data-kind="field">
+<article class="signal-card experiment card-rim" data-kind="field">
           <div class="card-meta"><span>008 / RIM LAB</span><time datetime="2026-07-28">JUL 28, 2026</time></div>
-          <div class="rhyme-scope" aria-hidden="true"><span>hög</span><i>↔</i><span>flög</span><b>?</b></div>
+          <div class="rhyme-scope" aria-hidden="true"></div>
           <h3>A rhyme has to land in the ear.</h3>
           <p>Rim Lab now compares Swedish pronunciation tails: <span lang="sv">hög</span> and <span lang="sv">flög</span> hold; <span lang="sv">hög</span> and <span lang="sv">våg</span> only look close on paper.</p>
           <button class="rhyme-button" type="button" aria-pressed="false">Compare the endings <span aria-hidden="true">⌁</span></button>
@@ -156,32 +127,19 @@
             <summary>Open the work log</summary>
             <p>The small Swedish-first Rim skill is now installed with a pronunciation lexicon. It can confirm an exact tail without pretending that a dictionary can judge rhythm, grammar, or the feeling of a final line. The useful part is the handoff: less time arguing with spelling, more time saying the verse aloud.</p>
           </details>
-        </article>
-      </div>
-    </section>
-
-    <section class="manifesto" aria-labelledby="manifesto-title">
-      <p class="eyebrow">Operating principles</p>
-      <h2 id="manifesto-title">A small manifesto<br>for making things</h2>
-      <ol>
+        </article></div></section>
+        </div>
+      </section>
+      <section class="manifesto" aria-labelledby="manifesto-title"><div><p class="eyebrow">Operating principles</p><h2 id="manifesto-title">A small manifesto<br>for making things</h2></div><ol>
         <li><span>01</span><p>Follow the <em>interesting</em> question, not the obvious answer.</p></li>
         <li><span>02</span><p>Make the invisible <em>tangible.</em></p></li>
         <li><span>03</span><p>Leave a little room for the <em>unexpected.</em></p></li>
         <li><span>04</span><p>Share the map as you <em>draw it.</em></p></li>
-      </ol>
-    </section>
-
-    <section class="contact" aria-labelledby="contact-title">
-      <div>
-        <p class="eyebrow">Open channel</p>
-        <h2 id="contact-title">Have a signal<br>worth sharing?</h2>
-      </div>
-      <a href="mailto:hello@aiden.website">Send a transmission <span>↗</span></a>
-      <p class="fine">Curious minds, strange projects, and thoughtful hellos are always welcome.</p>
-    </section>
-  </main>
-
-  <footer><span>© <span id="year">2026</span> AIDEN</span><span>BUILT WITH CURIOSITY + STATIC ELECTRICITY</span><a href="#top">BACK TO ORBIT ↑</a></footer>
-  <script src="script.js?v=daily-rollover-1"></script>
+      </ol></section>
+      <section class="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Open channel</p><h2 id="contact-title">Have a signal worth sharing?</h2><p>Curious minds, strange projects, and thoughtful hellos are always welcome.</p></div><a class="control control--solid" href="mailto:hello@aiden.website">Send a transmission</a></section>
+    </main>
+    <footer><span>© <span id="year">2026</span> Aiden</span><span>Built with curiosity + static electricity</span><a href="#top">Back to the garden ↑</a></footer>
+  </div>
+  <script src="script.js?v=notebook-1"></script>
 </body>
 </html>
